@@ -7,6 +7,7 @@
                 :name="name"
                 :paused="paused"
                 :error="error"
+                :ignored="ignored"
                 :average-speed="averageSpeed"
                 :formated-average-speed="formattedAverageSpeed"
                 :current-speed="currentSpeed"
@@ -19,7 +20,7 @@
                 :progress-style="progressStyle"
                 :progressing-class="progressingClass"
                 :time-remaining="timeRemaining"
-                :formated-time-remaining="formatedTimeRemaining"
+                :formated-time-remaining="formattedTimeRemaining"
                 :type="type"
                 :extension="extension"
                 :file-category="fileCategory"
@@ -74,6 +75,7 @@
                 name: '',
                 paused: false,
                 error: false,
+                ignored: false,
                 averageSpeed: 0,
                 currentSpeed: 0,
                 isComplete: false,
@@ -126,7 +128,7 @@
                 const isComplete = this.isComplete;
                 const isError = this.error;
                 const paused = this.paused;
-                const ignored = this.file.ignored;
+                const ignored = this.ignored;
                 if (isComplete) {
                     return 'success';
                 } else if (isError) {
@@ -165,6 +167,7 @@
             _actionCheck() {
                 this.paused = this.file.paused;
                 this.error = this.file.error;
+                this.ignored = this.file.ignored;
                 this.isUploading = this.file.isUploading();
             },
             pause() {
